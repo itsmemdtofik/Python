@@ -5,6 +5,12 @@ ServerSocket = socket.socket()
 host = '127.0.0.1'
 port = 1159
 ThreadCount = 0
+
+current_dir = os.path.curdir(__file__)
+file_path = os.path.join(file_path, "Data.csv")
+print(file_path)
+
+
 try:
     ServerSocket.bind((host, port))
 except socket.error as e:
