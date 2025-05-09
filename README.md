@@ -1,2 +1,3 @@
 # Python
-Python-Socket-Programming
+Python-Programming Concept For Learning.
+Covers basics to advanced topics.
