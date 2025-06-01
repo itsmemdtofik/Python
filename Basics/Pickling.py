@@ -1,7 +1,5 @@
 
 #! Pickling and Unpickling in Python
-
-
 #** Convert python object into the byte stream called pickling (Serialization).
 #** Restore them back into the python object is called unpickling (Deserialization).
 

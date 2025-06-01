@@ -1,5 +1,6 @@
 
 #! Inheirtance in Python
+#* Inheritance gives the power to a class to access all attributes and method of another class.
 
 class ParentClass:
     # Parent class attributes/methods
@@ -10,7 +11,7 @@ class ChildClass(ParentClass):  # Inherits from ParentClass
     pass
 
 
-#! Lets take a real worl example
+#! Lets take a real world example
 
 #Parent Class
 class Animal:

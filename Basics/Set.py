@@ -1,11 +1,15 @@
-#!Python Set
-
+"""
+✅ set in Python is:
+!ZMutable: You can add, remove, or update elements.
+Unordered: There is no guaranteed order of elements — the order you insert elements is not preserved (in regular set, unlike dict and OrderedDict).
+No duplicates: A set automatically removes duplicate values.
+"""
 myset = {"apple", "mango", "Snadisk"}
 
 #print(myset[0])
 print("Mysets is : ", myset)
 
-#! Set is unordered, immutable and do not allow duplicate
+#! Set is unordered, mutable and do not allow duplicate
 #! But you can remove item and add new item using add() method
 
 #* We can join the two sets

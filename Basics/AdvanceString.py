@@ -1,4 +1,4 @@
-#Case conversion in user authentication
+# Case conversion in user authentication
 # Case-insensitive login system
 stored_username = "AdminUser123"
 user_input = "adminuser123"
@@ -9,10 +9,10 @@ else:
     print("Invalid username")
     
 # Output: Login successful!
-#Why casefold() instead of lower()?
-#casefold() is more aggressive and handles special cases like German 'ß' converting to 'ss', making it better for case-insensitive comparisons.
+# Why casefold() instead of lower()?
+# casefold() is more aggressive and handles special cases like German 'ß' converting to 'ss', making it better for case-insensitive comparisons.
 
-##Data cleaning and validation
+# Data cleaning and validation
 # Cleaning and validating user data
 def clean_phone_number(phone):
     # Remove all non-digit characters
