@@ -1,6 +1,6 @@
 """
 ✅ set in Python is:
-!ZMutable: You can add, remove, or update elements.
+Mutable: You can add, remove, or update elements.
 Unordered: There is no guaranteed order of elements — the order you insert elements is not preserved (in regular set, unlike dict and OrderedDict).
 No duplicates: A set automatically removes duplicate values.
 """

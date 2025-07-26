@@ -1,13 +1,15 @@
+from multiprocessing import connection
 import socket
 import os
 from _thread import *
+
 ServerSocket = socket.socket()
 host = '127.0.0.1'
 port = 1159
 ThreadCount = 0
 
-current_dir = os.path.curdir(__file__)
-file_path = os.path.join(file_path, "Data.csv")
+current_dir = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(current_dir, "Data.csv")
 print(file_path)
 
 

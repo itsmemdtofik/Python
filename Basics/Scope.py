@@ -1,7 +1,7 @@
 
 #! Scope in Python
 
-#A variable is only availab;e from inside the region it is created. This is called scope.
+#A variable is only availabe from inside the region it is created. This is called scope.
 
 #! 1. Local Scope
 #A varible is created inside a function is called local scope and can one be used inside the function.
