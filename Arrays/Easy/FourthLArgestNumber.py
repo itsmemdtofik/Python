@@ -7,36 +7,34 @@
      * Step2: Store the fourth = third, third = second, second = first, first = arr[i]
      * Step3: Return the fourth largest
 """
-from Arrays.Easy.SecondLargest import second_largest
 
 
 def fourthLargestNumber(nums):
     if not nums or len(nums) < 4:
-        return nums
+        return nums  # Not enough unique numbers
 
-    first_largest = float('-inf')
-    second_largest = float('-inf')
-    third_largest = float('-inf')
-    fourth_largest = float('-inf')
+    # Remove duplicates to ensure distinct elements
+    unique_nums = list(set(nums))
 
-    for num in nums:
+    # Initialize top 4
+    first_largest = second_largest = third_largest = fourth_largest = float('-inf')
+
+    for num in unique_nums:
         if num > first_largest:
             fourth_largest = third_largest
             third_largest = second_largest
             second_largest = first_largest
             first_largest = num
-        elif num > second_largest and num != first_largest:
+        elif num > second_largest:
             fourth_largest = third_largest
             third_largest = second_largest
             second_largest = num
-        elif num > third_largest and num != first_largest and num != second_largest:
+        elif num > third_largest:
             fourth_largest = third_largest
             third_largest = num
-        elif num > fourth_largest and num != first_largest and num != second_largest and num != third_largest:
+        elif num > fourth_largest:
             fourth_largest = num
 
-    if fourth_largest == float('-inf'):
-        return None
     return fourth_largest
 
 

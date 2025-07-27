@@ -1,6 +1,6 @@
 
 #! Doubly Linked List
-'''
+"""
 #!Why do we need self?
 
 #?Access Instance Variables: 
@@ -14,7 +14,7 @@ Instance Variables: Each object of the class may have different values for its p
 
 #!Methods and self: 
 When you define a method inside a class, self allows that method to access and modify the properties of the object the method is called on. Without self, you wouldn't be able to refer to or modify the instance's state.
-'''
+"""
 class Node:
     def __init__(self, data):
         self.data = data

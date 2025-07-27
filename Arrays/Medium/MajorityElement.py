@@ -1,5 +1,5 @@
-'''
- * ! Majority Element II - An element that occure [arr.length / 3] times.
+"""
+ * ! Majority Element II - An element that occur [arr.length / 3] times.
  * 
  * Given an array arr[] consisting of n integers, the task is to find all the
  * array elements which occurs more than floor(n/3) times.
@@ -24,18 +24,11 @@
  * Explanation: There is no majority element.
  * 
  * 
- '''
-
-# Python3 program to find Majority
-# element in an array using nested loops
+ """
 
 # Function to find the Majority element in an array
-# Python3 program to find Majority
-# element in an array using nested loops
-
-# Function to find the Majority element in an array
-def majorityElement(arr):
-    n = len(arr)  
+def majorityElement(nums):
+    n = len(nums)
 
     # Loop to consider each element as a candidate for majority
     for i in range(n):
@@ -54,5 +47,5 @@ def majorityElement(arr):
     return -1
 
 if __name__ == "__main__":
-	arr = [1, 1, 2, 1, 3, 5, 1]
-	print(majorityElement(arr))
+    arr = [1, 1, 2, 1, 3, 5, 1]
+    print(majorityElement(arr))

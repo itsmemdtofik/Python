@@ -1,4 +1,4 @@
-'''
+"""
  * * Product of an Array Except Self.
  * 
  * Given an array arr[] of n integers, construct a product array res[] (of the
@@ -26,7 +26,7 @@
  * For i = 1, res[i] = 12.
  * 
  * Approach:
- * Step1: Create a temproray array and fill it by 1. We can do it by
+ * Step1: Create a temporary array and fill it by 1. We can do it by
  * Arrays.fill(result, 1). [1, 1, 1, 1]. We wil update this one by one.
  * Step2: Use two loop from 0 to n and compute the product.
  * 
@@ -36,55 +36,69 @@
  * result[1] = 12
  * result[2] = 8
  * result[3] = 6
-'''
+"""
 
-# Function to calculate the product of all 
-# elements except the current element
-def productExceptSelf(arr):
-    n = len(arr)
+
+# This method using division operator
+def product_except_self(nums):
+    total = 1
+
+    for item in nums:
+        total *= item
+
+    print(total)
+
+    result = []
+    for item in arr:
+        result.append(total // item)
+    return result
+
+
+# Function to calculate the product of all elements except the current element
+def productExceptSelf(nums):
+    n = len(nums)
 
     # Initialize the result list as 1
-    res = [1] * n
+    result = [1] * n
 
     for i in range(n):
-        
+
         # Compute the product of all except arr[i]
         for j in range(n):
             if i != j:
-                res[i] *= arr[j]
+                result[i] *= arr[j]
 
-    return res
+    return result
 
-# Function to calculate the product of all
-# elements except the current element
-def productExceptSelf(arr):
-    n = len(arr)
-    prefProduct = [1] * n
-    suffProduct = [1] * n
-    res = [0] * n
+
+# Function to calculate the product of all elements except the current element
+def productExceptSelfII(nums):
+    n = len(nums)
+    prefixProduct = [1] * n
+    suffixProduct = [1] * n
+    result = [0] * n
 
     # Construct the prefProduct array
     for i in range(1, n):
-        prefProduct[i] = arr[i - 1] * prefProduct[i - 1]
+        prefixProduct[i] = nums[i - 1] * prefixProduct[i - 1]
 
-    # Construct the suffProduct array
+    # Construct the suffix Product array
     for j in range(n - 2, -1, -1):
-        suffProduct[j] = arr[j + 1] * suffProduct[j + 1]
+        suffixProduct[j] = nums[j + 1] * suffixProduct[j + 1]
 
-    # Construct the result array using
-    # prefProduct[] and suffProduct[]
+    # Construct the result array using prefix Product[] and suffix Product[]
     for i in range(n):
-        res[i] = prefProduct[i] * suffProduct[i]
+        result[i] = prefixProduct[i] * suffixProduct[i]
 
-    return res
+    return result
+
 
 if __name__ == '__main__':
     arr = [10, 3, 5, 6, 2]
     res = productExceptSelf(arr)
     print(res)
 
-
 if __name__ == "__main__":
     arr = [1, 2, 3, 4]
-    res = productExceptSelf(arr)
+    res = productExceptSelfII(arr)
     print(" ".join(map(str, res)))
