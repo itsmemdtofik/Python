@@ -20,37 +20,42 @@ from List.PrintList import printSLL
 
 
 def deleteMidFromSLL(head: Node) -> Node | None | Any:
-    if head is None:
-        return None
-
     if head.next is None:
         return None
 
     count = 0
-    current = head
+    currentNode = head
+    nextNode = head
 
-    while current:
+    while currentNode is not None:
         count += 1
-        current = current.next
+        currentNode = currentNode.next
 
     middleIndex = count // 2
 
-    current = head
     for i in range(middleIndex - 1):
-        current = current.next
+        nextNode = nextNode.next
 
-    current.next = current.next.next
+    nextNode.next = nextNode.next.next
 
     return head
 
 
 if __name__ == "__main__":
+    # Create a static hardcoded linked list:
+    # 1 -> 2 -> 3 -> 4 -> 5.
     head = Node(1)
     head.next = Node(2)
     head.next.next = Node(3)
     head.next.next.next = Node(4)
     head.next.next.next.next = Node(5)
+   # head.next.next.next.next.next = Node(6)
 
+    print("Original Linked List:", end=" ")
+    printSLL(head)
 
+    # Delete the middle node.
     head = deleteMidFromSLL(head)
+
+    print("Linked List after deleting the middle node:", end=" ")
     printSLL(head)
