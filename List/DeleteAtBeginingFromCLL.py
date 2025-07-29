@@ -21,7 +21,7 @@ from CircularLLTraversal import printCLL
 from Node import SingleLinkedList as Node
 
 
-def deleteFirstNode(last: Node):
+def deleteAtBegining(last: Node):
     if last is None:
         print(f"List is empty!")
         return None
@@ -33,6 +33,7 @@ def deleteFirstNode(last: Node):
     else:
         last.next = head.next
     return last
+
 
 def print_list(last):
     if last is None:
@@ -58,7 +59,8 @@ print("Original list: ", end="")
 print_list(last)
 
 # Delete the first node
-last = deleteFirstNode(last)
+last = deleteAtBegining(last)
 
 print("List after deleting first node: ", end="")
 print_list(last)
+
