@@ -12,8 +12,7 @@
      * </pre>
 
 """
-from List.Node import SingleLinkedList as Node
-from List.PrintList import printSLL
+from Node import SingleLinkedList as Node
 
 
 def detectLoop(head: Node):

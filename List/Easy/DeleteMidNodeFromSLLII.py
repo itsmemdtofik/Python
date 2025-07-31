@@ -14,8 +14,8 @@
 
 """
 
-from List.Node import SingleLinkedList as Node
-from List.PrintList import printSLL
+from Node import SingleLinkedList as Node
+from PrintList import printSLL
 
 
 def deleteMidNodeFromSingleLinkedList(head: Node):

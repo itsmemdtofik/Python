@@ -17,7 +17,7 @@
      * Finally, break the loop by updating the next pointer of kth node to NULL..
      * </pre>
 """
-from List.PrintList import printSLL
+from PrintList import printSLL
 
 
 class Node:

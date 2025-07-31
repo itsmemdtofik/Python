@@ -21,7 +21,6 @@ Explanation: There is no cycle in the linked list.
 """
 
 from Node import SingleLinkedList as Node
-from PrintList import printSLL
 
 
 def detectCycleII(head: Node):

@@ -91,7 +91,7 @@ def check_password_strength(password):
 print(check_password_strength("Passw0rd!"))  # Strong password
 print(check_password_strength("weak"))       # Weak password - missing: length, uppercase, digit, special
 
-##File extenion processing
+##File extension processing
 # Comprehensive filename processor
 def process_filename(filename):
     # Split filename and extension

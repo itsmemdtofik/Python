@@ -17,7 +17,6 @@ The main difference is that we need to ensure the list remains circular after th
 We can delete a node in a circular linked list in three ways:
 """
 
-from CircularLLTraversal import printCLL
 from Node import SingleLinkedList as Node
 
 
@@ -63,4 +62,3 @@ last = deleteAtBegining(last)
 
 print("List after deleting first node: ", end="")
 print_list(last)
-

@@ -16,8 +16,8 @@
 """
 from typing import Any
 
-from List.Linkedlist import Node
-from List.PrintList import printSLL
+from Node import SingleLinkedList as Node
+from PrintList import printSLL
 
 
 def deleteLastOccurrenceFromSLL(head: Node, key: int) -> Node | None | Any:

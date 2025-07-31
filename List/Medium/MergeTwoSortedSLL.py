@@ -7,15 +7,14 @@ The task is to merge both of the lists and return the head of the merged list.
 
 """
 
-# File: List/Medium/MergeTwoSortedList.py
-
 from Node import SingleLinkedList as Node
 from PrintList import printSLL
+
 
 class MergeTwoSortedList:
 
     @staticmethod
-    def merge(head1:Node, head2:Node):
+    def merge(head1: Node, head2: Node):
         dummy = Node(0)
         currentNode = dummy
 

@@ -11,7 +11,6 @@ Note: No head reference is given to you. It is guaranteed that the node to be de
 """
 
 from Node import SingleLinkedList as Node
-from PrintList import printSLL
 
 
 class DeleteNodeWithoutHead:
