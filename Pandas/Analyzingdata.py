@@ -7,7 +7,7 @@ The head() method returns the headers and a specified number of rows, starting f
 '''
 
 import pandas as pd
-df = pd.read_csv("/Users/itsmemdtofik/Downloads/DSA-In-Python/Pandas/Readcsv.csv")
+df = pd.read_csv("/Users/itsmemdtofik/Downloads/Python/Pandas/Csvdata.csv")
 print("The head() print 10 rows of the DataFrame are:")
 print(df.head(10))
 

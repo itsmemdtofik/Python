@@ -6,7 +6,7 @@ CSV files contains plain text and is a well know format that can be read by ever
 In our examples we will be using a CSV file called 'Csvdata.csv'.
 '''
 import pandas as pd
-df = pd.read_csv('/Users/itsmemdtofik/Downloads/DSA-In-Python/Pandas/Csvdata.csv')
+df = pd.read_csv('/Users/itsmemdtofik/Downloads/Python/Pandas/Csvdata.csv')
 print(df.to_string())
 
 #We used to_string() to print entire data frame.

@@ -1,322 +1,153 @@
+from PrintList import printSLL
+
+
 class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
 
-class SinglyLinkedList:
-    def __init__(self):
-        self.head = None
 
-    # 1. Insert at the beginning
-    def insert_at_beginning(self, data):
-        new_node = Node(data)
-        new_node.next = self.head
-        self.head = new_node
+def insertAtBegining(head: Node, data: int):
+    if head is None:
+        return None
 
-    # 2. Insert at the end
-    def insert_at_end(self, data):
-        new_node = Node(data)
-        if self.head is None:
-            self.head = new_node
-            return
-        current = self.head
-        while current.next is not None:
-            current = current.next
-        current.next = new_node
+    new_node = Node(data)
+    new_node.next = head
+    head = new_node
 
-    # 3. Insert after a node
-    def insert_after(self, prev_data, data):
-        current = self.head
-        while current is not None and current.data != prev_data:
-            current = current.next
-        if current is not None:
-            new_node = Node(data)
-            new_node.next = current.next
-            current.next = new_node
+    return head
+
+
+def insertAtMidOfEvenOdd(head: Node, data: int):
+    if head is None:
+        return Node(data)
+
+    new_node = Node(data)
+
+    slow = head
+    fast = head
+    previousNode = None
+
+    while fast is not None and fast.next is not None:
+        previousNode = slow
+        slow = slow.next
+        fast = fast.next.next
+
+    if fast is None:
+        # Even length — insert **before** the second middle
+        new_node.next = slow
+        if previousNode is not None:
+            previousNode.next = new_node
+            return head
         else:
-            print(f"Node with data {prev_data} not found.")
+            # Only two nodes, insert at beginning
+            new_node.next = head
+            return new_node
+    else:
+        # Odd length — insert **after** the exact middle
+        new_node.next = slow.next
+        slow.next = new_node
+        return head
 
-    # 4. Delete by value
-    def delete_by_value(self, data):
-        if self.head is None:
-            return
-        if self.head.data == data:
-            self.head = self.head.next
-            return
-        current = self.head
-        while current.next is not None and current.next.data != data:
-            current = current.next
-        if current.next is not None:
-            current.next = current.next.next
-        else:
-            print(f"Node with data {data} not found.")
 
-    # 5. Delete from the beginning
-    def delete_from_beginning(self):
-        if self.head is not None:
-            self.head = self.head.next
+def insertAtEnd(head: Node, data: int):
+    if head is None:
+        return None
 
-    # 6. Delete from the end
-    def delete_from_end(self):
-        if self.head is None:
-            return
-        if self.head.next is None:
-            self.head = None
-            return
-        current = self.head
-        while current.next.next is not None:
-            current = current.next
-        current.next = None
+    new_node = Node(data)
 
-    # 7. Delete after a node
-    def delete_after(self, prev_data):
-        current = self.head
-        while current is not None and current.data != prev_data:
-            current = current.next
-        if current is not None and current.next is not None:
-            current.next = current.next.next
-        else:
-            print(f"No node found to delete after {prev_data}")
+    currentNode = head
+    while currentNode.next is not None:
+        currentNode = currentNode.next
 
-    # 8. Search an element
-    def search(self, data):
-        current = self.head
-        while current is not None:
-            if current.data == data:
-                return True
-            current = current.next
-        return False
+    currentNode.next = new_node
 
-    # 9. Traverse the list
-    def traverse(self):
-        if self.head is None:
-            print("The list is empty.")
-            return
-        current = self.head
-        while current is not None:
-            print(current.data, end=" ")
-            current = current.next
-        print()
+    return head
 
-    # 10. Reverse the list
-    def reverse(self):
-        prev = None
-        current = self.head
-        while current is not None:
-            next_node = current.next
-            current.next = prev
-            prev = current
-            current = next_node
-        self.head = prev
 
-    # 11. Find the length of the list
-    def length(self):
-        count = 0
-        current = self.head
-        while current is not None:
-            count += 1
-            current = current.next
-        return count
+def deleteAtBeginning(head: Node):
+    if head is None:
+        return None
 
-    # 12. Find the middle element
-    def find_middle(self):
-        slow = self.head
-        fast = self.head
-        while fast is not None and fast.next is not None:
-            slow = slow.next
-            fast = fast.next.next
-        return slow.data if slow is not None else -1
+    return head.next
 
-    # 13. Detect a loop
-    def detect_loop(self):
-        slow = self.head
-        fast = self.head
-        while fast is not None and fast.next is not None:
-            slow = slow.next
-            fast = fast.next.next
-            if slow == fast:
-                return True
-        return False
 
-    # 14. Merge two sorted linked lists
-    @staticmethod
-    def merge_sorted(list1, list2):
-        merged_list = SinglyLinkedList()
-        current1 = list1.head
-        current2 = list2.head
-        while current1 is not None and current2 is not None:
-            if current1.data < current2.data:
-                merged_list.insert_at_end(current1.data)
-                current1 = current1.next
-            else:
-                merged_list.insert_at_end(current2.data)
-                current2 = current2.next
-        while current1 is not None:
-            merged_list.insert_at_end(current1.data)
-            current1 = current1.next
-        while current2 is not None:
-            merged_list.insert_at_end(current2.data)
-            current2 = current2.next
-        return merged_list
+def deleteAtMidOfEvenOdd(head: Node) -> Node:
+    if not head or not head.next:
+        return None
 
-    # 15. Remove duplicates
-    def remove_duplicates(self):
-        current = self.head
-        while current is not None and current.next is not None:
-            if current.data == current.next.data:
-                current.next = current.next.next
-            else:
-                current = current.next
+    slow = head
+    fast = head
+    prev = None
 
-    # 16. Remove N-th node from the end
-    def remove_nth_from_end(self, n):
-        length = self.length()
-        if n > length:
-            return
-        if n == length:
-            self.head = self.head.next
-            return
-        current = self.head
-        for _ in range(1, length - n):
-            current = current.next
-        current.next = current.next.next
+    while fast and fast.next:
+        prev = slow
+        slow = slow.next
+        fast = fast.next.next
 
-    # 17. Get N-th node from the end
-    def get_nth_from_end(self, n):
-        length = self.length()
-        if n > length:
-            return -1
-        current = self.head
-        for _ in range(1, length - n):
-            current = current.next
-        return current.data
+    # Delete the middle node (works for both odd and even lengths)
+    if prev:
+        prev.next = slow.next
 
-    # 18. Check if the list is empty
-    def is_empty(self):
-        return self.head is None
+    return head
 
-    # 19. Get the head node
-    def get_head(self):
-        return self.head
 
-    # 20. Clear the list
-    def clear(self):
-        self.head = None
+def deleteAtEnd(head: Node):
+    if head is None:
+        return None  # List is empty
 
-    # 21. Clone the list
-    def clone_list(self):
-        cloned_list = SinglyLinkedList()
-        current = self.head
-        while current is not None:
-            cloned_list.insert_at_end(current.data)
-            current = current.next
-        return cloned_list
+    if head.next is None:
+        return None  # Only one node — delete it by returning None
 
-    # 22. Swap nodes in pairs
-    def swap_pairs(self):
-        current = self.head
-        while current is not None and current.next is not None:
-            current.data, current.next.data = current.next.data, current.data
-            current = current.next.next
+    currentNode = head
+    previousNode = None
 
-    # 23. Flatten a multi-level linked list
-    def flatten(self):
-        pass  # Simplified version, no implementation
+    while currentNode.next is not None:
+        previousNode = currentNode
+        currentNode = currentNode.next
 
-def main():
-    sll = SinglyLinkedList()
-    
-    while True:
-        print("\nChoose an operation:")
-        print("1. Insert at the beginning")
-        print("2. Insert at the end")
-        print("3. Insert after a node")
-        print("4. Delete by value")
-        print("5. Delete from the beginning")
-        print("6. Delete from the end")
-        print("7. Delete after a node")
-        print("8. Search an element")
-        print("9. Traverse")
-        print("10. Reverse")
-        print("11. Length")
-        print("12. Find middle")
-        print("13. Detect loop")
-        print("14. Merge two sorted lists")
-        print("15. Remove duplicates")
-        print("16. Remove N-th node from the end")
-        print("17. Get N-th node from the end")
-        print("18. Check if empty")
-        print("19. Clear the list")
-        print("20. Clone the list")
-        print("21. Swap pairs")
-        print("22. Exit")
+    previousNode.next = None  # Unlink the last node
+    return head
 
-        try:
-            choice = int(input("Enter your choice: "))
-        except ValueError:
-            print("Invalid input. Please enter a number.")
-            continue
 
-        if choice == 1:
-            data = int(input("Enter data: "))
-            sll.insert_at_beginning(data)
-        elif choice == 2:
-            data = int(input("Enter data: "))
-            sll.insert_at_end(data)
-        elif choice == 3:
-            prev = int(input("Enter node to insert after: "))
-            data = int(input("Enter data: "))
-            sll.insert_after(prev, data)
-        elif choice == 4:
-            data = int(input("Enter data to delete: "))
-            sll.delete_by_value(data)
-        elif choice == 5:
-            sll.delete_from_beginning()
-        elif choice == 6:
-            sll.delete_from_end()
-        elif choice == 7:
-            prev = int(input("Enter node to delete after: "))
-            sll.delete_after(prev)
-        elif choice == 8:
-            data = int(input("Enter data to search: "))
-            print("Found:", sll.search(data))
-        elif choice == 9:
-            sll.traverse()
-        elif choice == 10:
-            sll.reverse()
-        elif choice == 11:
-            print("Length:", sll.length())
-        elif choice == 12:
-            print("Middle:", sll.find_middle())
-        elif choice == 13:
-            print("Loop detected:", sll.detect_loop())
-        elif choice == 14:
-            list2 = SinglyLinkedList()
-            print("Merging two sorted lists...")
-            merged_list = SinglyLinkedList.merge_sorted(sll, list2)
-            merged_list.traverse()
-        elif choice == 15:
-            sll.remove_duplicates()
-        elif choice == 16:
-            n = int(input("Enter N: "))
-            sll.remove_nth_from_end(n)
-        elif choice == 17:
-            n = int(input("Enter N: "))
-            print("Nth from end:", sll.get_nth_from_end(n))
-        elif choice == 18:
-            print("Is empty:", sll.is_empty())
-        elif choice == 19:
-            sll.clear()
-        elif choice == 20:
-            cloned = sll.clone_list()
-            cloned.traverse()
-        elif choice == 21:
-            sll.swap_pairs()
-        elif choice == 22:
-            print("Exiting...")
-            break
-        else:
-            print("Invalid choice! Try again.")
+if __name__ == '__main__':
+    head = Node(20)
+    head.next = Node(30)
+    head.next.next = Node(40)
+    head.next.next.next = Node(50)
+    head.next.next.next.next = Node(60)
+    head.next.next.next.next.next = Node(70)
 
-if __name__ == "__main__":
-    main()
+    head = insertAtBegining(head, 10)
+    print(f"After inserting node {head.data} at beginning: ")
+    printSLL(head)
+
+    head = insertAtMidOfEvenOdd(head, 80)
+    print(f"After inserting node 80 at even and odd: ")
+    printSLL(head)
+
+    head = insertAtEnd(head, 90)
+    print(f"After inserting node 90 at ending: ")
+    printSLL(head)
+
+    print(f"Original List:")
+    printSLL(head)
+
+    head = deleteAtBeginning(head)
+    print(f"After deleting from beginning:")
+    printSLL(head)
+
+    print(f"Original List:")
+    printSLL(head)
+
+    head = deleteAtMidOfEvenOdd(head)
+    print(f"After deleting from Mid:")
+    printSLL(head)
+
+    head = deleteAtMidOfEvenOdd(head)
+    print(f"After deleting from Mid:")
+    printSLL(head)
+
+    head = deleteAtEnd(head)
+    print(f"After deleting from End:")
+    printSLL(head)
