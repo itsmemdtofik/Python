@@ -8,7 +8,7 @@
      * Output: head: 4 -> 3 -> 2 -> 1 -> NULL
      * Explanation: Reversed Linked List: 4 -> 3 -> 2 -> 1 -> null
      *
-     * !Approach1: Using Iterative Method - O(n) Time and O(1) Space
+     * !Approach1: Using Iterative Method(two-pointer) - O(n) Time and O(1) Space
      * !Approach2: Using Stack - O(n) Time and O(n) Space
      * Push all nodes onto the stack
      * Pop the last node from the stack (which was the last in original list)
@@ -22,19 +22,20 @@ class Node:
         self.next = None
 
 
-def reverseList(head:Node):
+def reverseSingleLinkedListUsingStack(head:Node):
 
     # Create a stack to store the nodes
     stack = []
     currentNode = head
 
-    # Push all nodes except the last node into stack
-    while currentNode.next is not None:
+    # Push all nodes node into stack
+    while currentNode is not None:
         stack.append(currentNode)
         currentNode = currentNode.next
 
     # Make the last node as new head of the linked list
-    head = currentNode
+    newHead = stack.pop()
+    currentNode = newHead
 
     # Pop all the nodes and append to the linked list
     while stack:
@@ -44,10 +45,10 @@ def reverseList(head:Node):
         # move to the next node in the list
         currentNode = currentNode.next
 
-    # Update the next pointer of last node of stack to None
+    # Update the next pointer of last node of stack to None or Terminate the list
     currentNode.next = None
 
-    return head
+    return newHead
 
 
 def printList(node:Node):
@@ -66,7 +67,7 @@ head.next.next.next.next = Node(5)
 print("Given Linked List:", end="")
 printList(head)
 
-head = reverseList(head)
+head = reverseSingleLinkedListUsingStack(head)
 
 print("Reversed Linked List:", end="")
 printList(head)

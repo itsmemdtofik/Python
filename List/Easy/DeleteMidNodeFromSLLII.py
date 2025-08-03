@@ -33,7 +33,7 @@ def deleteMidNodeFromSingleLinkedList(head: Node):
         slow = slow.next
 
     # 'slow' is now the middle node; 'prev' is the node before it
-    if previousNode:
+    if previousNode is not None:
         previousNode.next = slow.next
 
     return head
@@ -46,7 +46,7 @@ if __name__ == "__main__":
     head.next.next = Node(3)
     head.next.next.next = Node(4)
     head.next.next.next.next = Node(5)
-    head.next.next.next.next.next = Node(6)
+    #head.next.next.next.next.next = Node(6)
 
     print("Original list:")
     printSLL(head)

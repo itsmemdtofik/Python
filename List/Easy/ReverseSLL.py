@@ -24,7 +24,10 @@ class Node:
         self.next = None
 
 
-def reverseSingleLinkedList(head: Node):
+def reverseSingleLinkedListUsingTwoPointer(head: Node):
+    if head is None or head.next is None:
+        return head
+
     currentNode = head
     previousNode = None
 
@@ -56,7 +59,7 @@ if __name__ == "__main__":
     print("Given Linked list:", end="")
     printSLL(head)
 
-    head = reverseSingleLinkedList(head)
+    head = reverseSingleLinkedListUsingTwoPointer(head)
 
     print("Reversed Linked List:", end="")
     printSLL(head)

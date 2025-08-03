@@ -19,7 +19,7 @@ from Node import SingleLinkedList as Node
 from PrintList import printSLL
 
 
-def getIntersectionOfTwoSortedSingleLinkedListII(head1: Node, head2: Node):
+def getIntersectionOfTwoSortedSingleLinkedListUsingTwoPointer(head1: Node, head2: Node):
     dummy = Node(0)
     currentNode = dummy
 
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     print("Second List:")
     printSLL(head2)
 
-    intersection = getIntersectionOfTwoSortedSingleLinkedListII(head1, head2)
+    intersection = getIntersectionOfTwoSortedSingleLinkedListUsingTwoPointer(head1, head2)
 
     print("Intersection of the two lists:")
     printSLL(intersection)

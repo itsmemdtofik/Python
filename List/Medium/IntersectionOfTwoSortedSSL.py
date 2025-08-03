@@ -24,6 +24,22 @@ def getIntersectionOfTwoSortedSingleLinkedList(head1: Node, head2: Node):
     temp2 = head2
 
     while temp1 != temp2:
+        if temp1 is not None:
+            temp1 = temp1.next
+        else:
+            temp1 = head2
+
+        if temp2 is not None:
+            temp2 = temp2.next
+        else:
+            temp2 = head1
+    return temp1
+
+
+def getIntersectionOfTwoSortedSingleLinkedListII(head1: Node, head2: Node):
+    temp1 = head1
+    temp2 = head2
+    while temp1 != temp2:
         temp1 = head2 if temp1 is None else temp1.next
         temp2 = head1 if temp2 is None else temp2.next
     return temp1

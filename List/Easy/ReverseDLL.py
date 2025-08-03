@@ -21,7 +21,7 @@ class Node:
         self.prev = None
 
 
-def reverseDoublyLinkedList(head: Node):
+def reverseDoublyLinkedListUsingTwoPointer(head: Node):
     # If the list is empty or has only one node, then return the head as it is
     if head is None or head.next is None:
         return head
@@ -35,9 +35,28 @@ def reverseDoublyLinkedList(head: Node):
         currentNode.prev = currentNode.next
         currentNode.next = previousNode
 
+        # Move in the original forward direction using the updated prev (which was originally next)
         currentNode = currentNode.prev
 
-    return previousNode.prev
+    # previousNode is now the old head's previous node, which is the new head of the reversed list.
+    if previousNode is not None:
+        return previousNode.prev
+    return head
+
+
+def reverseDoublyLinkedListSwapping(head: Node):
+    if head is None or head.next is None:
+        return head
+
+    currentNode = head
+    # previousNode = None
+
+    while currentNode is not None:
+        currentNode.prev, currentNode.next = currentNode.next, currentNode.prev
+        head = currentNode
+        currentNode = currentNode.prev
+
+    return head
 
 
 def printDLL(head: Node):
@@ -61,6 +80,6 @@ if __name__ == "__main__":
 
     print("Original Doubly Linked List")
     printDLL(head)
-    head = reverseDoublyLinkedList(head)
+    head = reverseDoublyLinkedListSwapping(head)
     print("Reversed Doubly Linked List")
     printDLL(head)

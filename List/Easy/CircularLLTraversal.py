@@ -21,7 +21,7 @@ def printCLL(head: Node):
         return
 
     currentNode = head
-    while True:
+    while currentNode is not None:
         print(f"{currentNode.data}", end=" -> ")
         currentNode = currentNode.next
 

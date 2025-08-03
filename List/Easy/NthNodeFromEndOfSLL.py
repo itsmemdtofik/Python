@@ -39,30 +39,30 @@ class LinkedList:
             return
 
         last = self.head
-        while last.next:
+        while last.next is not None:
             last = last.next
         last.next = new_node
 
     # Function to find Nth node from the end using two-pass approach
     def get_nth_from_end(self, n):
         length = 0
-        temp = self.head
+        currentNode = self.head
 
         # First pass: find length of list
-        while temp:
+        while currentNode is not None:
             length += 1
-            temp = temp.next
+            currentNode = currentNode.next
 
         # If n is greater than length, return -1
         if n > length:
             return -1
 
         # Second pass: get (length - n + 1)th node from start
-        temp = self.head
+        currentNode = self.head
         for _ in range(length - n):
-            temp = temp.next
+            currentNode = currentNode.next
 
-        return temp.data
+        return currentNode.data
 
 
 # --------- Test the Code ---------

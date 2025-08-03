@@ -1,5 +1,4 @@
-
-#! Doubly Linked List
+# ! Doubly Linked List
 """
 #!Why do we need self?
 
@@ -15,17 +14,21 @@ Instance Variables: Each object of the class may have different values for its p
 #!Methods and self: 
 When you define a method inside a class, self allows that method to access and modify the properties of the object the method is called on. Without self, you wouldn't be able to refer to or modify the instance's state.
 """
+from typing import Any
+from PrintList import printDLL
+
+
 class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
         self.prev = None
 
+
 class DoublyLinkedList:
-    def __init__(self):#Initialize an empty list
+    def __init__(self):  # Initialize an empty list
         self.head = None
 
-    # 1. Insert at the beginning
     def insert_at_beginning(self, data):
         new_node = Node(data)
         if self.head is None:
@@ -35,7 +38,43 @@ class DoublyLinkedList:
             self.head.prev = new_node
             self.head = new_node
 
-    # 2. Insert at the end
+    def insertAtMidOfEvenOdd(self, data: int) -> Node | None:
+        new_node = Node(data)
+
+        # Case: Empty list → return new_node as head
+        if self.head is None:
+            return new_node
+
+        slow = fast = self.head
+
+        # Find middle node
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+
+        # Insertion logic
+        if fast is None:
+            # EVEN-LENGTH: Insert BEFORE second middle (slow)
+            # Example: [1 ⇄ 2 ⇄ 3 ⇄ 4] → Insert between 2 and 3
+            new_node.next = slow
+            new_node.prev = slow.prev
+            slow.prev = new_node
+            if new_node.prev is not None:
+                new_node.prev.next = new_node
+            else:
+                # Only happens in 2-node lists: [A ⇄ B] → [new ⇄ A ⇄ B]
+                self.head = new_node
+        else:
+            # ODD-LENGTH: Insert AFTER exact middle (slow)
+            # Example: [1 ⇄ 2 ⇄ 3] → Insert after 2
+            new_node.prev = slow
+            new_node.next = slow.next
+            slow.next = new_node
+            if new_node.next is not None:
+                new_node.next.prev = new_node
+
+        return self.head
+
     def insert_at_end(self, data):
         new_node = Node(data)
         if self.head is None:
@@ -47,49 +86,36 @@ class DoublyLinkedList:
             current.next = new_node
             new_node.prev = current
 
-    # 3. Insert after a node
-    def insert_after(self, prev_data, data):
-        current = self.head
-        while current is not None and current.data != prev_data:
-            current = current.next
-        if current is not None:
-            new_node = Node(data)
-            new_node.next = current.next
-            if current.next is not None:
-                current.next.prev = new_node
-            current.next = new_node
-            new_node.prev = current
-        else:
-            print(f"Node with data {prev_data} not found.")
-
-    # 4. Delete by value
-    def delete_by_value(self, data):
-        if self.head is None:
-            return
-        if self.head.data == data:
-            self.head = self.head.next
-            if self.head is not None:
-                self.head.prev = None
-            return
-        current = self.head
-        while current is not None and current.data != data:
-            current = current.next
-        if current is not None:
-            if current.next is not None:
-                current.next.prev = current.prev
-            if current.prev is not None:
-                current.prev.next = current.next
-        else:
-            print(f"Node with data {data} not found.")
-
-    # 5. Delete from the beginning
     def delete_from_beginning(self):
         if self.head is not None:
             self.head = self.head.next
             if self.head is not None:
                 self.head.prev = None
 
-    # 6. Delete from the end
+    def deleteAtMidOfEvenOdd(self) -> Any | None:
+        if not self.head or not self.head.next:
+            return None  # Empty or single-node list
+
+        slow = fast = self.head
+
+        # Find the middle node
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        # Delete the middle node (slow)
+        if slow.prev is not None:
+            slow.prev.next = slow.next  # Bypass slow
+        else:
+            self.head = slow.next  # Update head if deleting first node
+
+        if slow.next is not None:
+            slow.next.prev = slow.prev  # Update next node's prev
+
+        slow.prev = slow.next = None  # Optional: Clean up references
+
+        return self.head
+
     def delete_from_end(self):
         if self.head is None:
             return
@@ -100,6 +126,7 @@ class DoublyLinkedList:
         while current.next is not None:
             current = current.next
         current.prev.next = None
+        current.prev = None
 
     # 7. Delete after a node
     def delete_after(self, prev_data):
@@ -129,6 +156,9 @@ class DoublyLinkedList:
             print("The list is empty.")
             return
         current = self.head
+
+        while current.prev is not None:
+            current = current.prev
         while current is not None:
             print(current.data, end=" ")
             current = current.next
@@ -280,110 +310,62 @@ class DoublyLinkedList:
             current.data, current.next.data = current.next.data, current.data
             current = current.next.next
 
-    # 24. Flatten a multi-level linked list
-    def flatten(self):
-        pass  # Simplified version, no implementation
 
-def main():
-    dll = DoublyLinkedList()
-    
-    while True:
-        print("\nChoose an operation:")
-        print("1. Insert at the beginning")
-        print("2. Insert at the end")
-        print("3. Insert after a node")
-        print("4. Delete by value")
-        print("5. Delete from the beginning")
-        print("6. Delete from the end")
-        print("7. Delete after a node")
-        print("8. Search an element")
-        print("9. Traverse forward")
-        print("10. Traverse backward")
-        print("11. Length")
-        print("12. Find middle")
-        print("13. Detect loop")
-        print("14. Find intersection")
-        print("15. Merge two sorted lists")
-        print("16. Remove duplicates")
-        print("17. Remove N-th node from the end")
-        print("18. Get N-th node from the end")
-        print("19. Check if empty")
-        print("20. Clear the list")
-        print("21. Clone the list")
-        print("22. Swap pairs")
-        print("23. Flatten list")
-        print("24. Exit")
+if __name__ == '__main__':
+    # Create nodes and link forward and backward
+    head = Node(20)
+    node2 = Node(30)
+    node3 = Node(40)
+    node4 = Node(50)
+    node5 = Node(60)
+    node6 = Node(70)
 
-        try:
-            choice = int(input("Enter your choice: "))
-        except ValueError:
-            print("Invalid input. Please enter a number.")
-            continue
+    # Forward links
+    head.next = node2
+    node2.next = node3
+    node3.next = node4
+    node4.next = node5
+    node5.next = node6
 
-        if choice == 1:
-            data = int(input("Enter data: "))
-            dll.insert_at_beginning(data)
-        elif choice == 2:
-            data = int(input("Enter data: "))
-            dll.insert_at_end(data)
-        elif choice == 3:
-            prev = int(input("Enter node to insert after: "))
-            data = int(input("Enter data: "))
-            dll.insert_after(prev, data)
-        elif choice == 4:
-            data = int(input("Enter data to delete: "))
-            dll.delete_by_value(data)
-        elif choice == 5:
-            dll.delete_from_beginning()
-        elif choice == 6:
-            dll.delete_from_end()
-        elif choice == 7:
-            prev = int(input("Enter node to delete after: "))
-            dll.delete_after(prev)
-        elif choice == 8:
-            data = int(input("Enter data to search: "))
-            print("Found:", dll.search(data))
-        elif choice == 9:
-            dll.traverse_forward()
-        elif choice == 10:
-            dll.traverse_backward()
-        elif choice == 11:
-            print("Length:", dll.length())
-        elif choice == 12:
-            print("Middle:", dll.find_middle())
-        elif choice == 13:
-            print("Loop detected:", dll.detect_loop())
-        elif choice == 14:
-            pass  # Implement intersection if needed
-        elif choice == 15:
-            list2 = DoublyLinkedList()
-            print("Merging two sorted lists...")
-            merged_list = DoublyLinkedList.merge_sorted(dll, list2)
-            merged_list.traverse_forward()
-        elif choice == 16:
-            dll.remove_duplicates()
-        elif choice == 17:
-            n = int(input("Enter N: "))
-            dll.remove_nth_from_end(n)
-        elif choice == 18:
-            n = int(input("Enter N: "))
-            print("Nth from end:", dll.get_nth_from_end(n))
-        elif choice == 19:
-            print("Is empty:", dll.is_empty())
-        elif choice == 20:
-            dll.clear()
-        elif choice == 21:
-            cloned_list = dll.clone_list()
-            cloned_list.traverse_forward()
-        elif choice == 22:
-            dll.swap_pairs()
-        elif choice == 23:
-            dll.flatten()
-        elif choice == 24:
-            print("Exiting...")
-            break
-        else:
-            print("Invalid choice! Try again.")
+    # Backward links
+    node2.prev = head
+    node3.prev = node2
+    node4.prev = node3
+    node5.prev = node4
+    node6.prev = node5
 
-if __name__ == "__main__":
-    main()
+    # Proceed with function calls
+    Dll = DoublyLinkedList()
+    Dll.insert_at_beginning(head, 10)
+    print(f"After inserting node {head.data} at beginning:")
+    printDLL(head)
+
+    Dll.insertAtMidOfEvenOdd(head)
+    print(f"After inserting node 80 at mid (even/odd):")
+    printDLL(head)
+
+    Dll.insert_at_end(head)
+    print(f"After inserting node 90 at end:")
+    printDLL(head)
+
+    print(f"Original List:")
+    printDLL(head)
+
+    Dll.delete_from_beginning(head)
+    print(f"After deleting from beginning:")
+    printDLL(head)
+
+    print(f"Original List:")
+    printDLL(head)
+
+    Dll.deleteAtMidOfEvenOdd(head)
+    print(f"After deleting from mid:")
+    printDLL(head)
+
+    Dll.delete_from_end(head)
+    print(f"After deleting from mid:")
+    printDLL(head)
+
+    Dll.delete_from_end(head)
+    print(f"After deleting from end:")
+    printDLL(head)

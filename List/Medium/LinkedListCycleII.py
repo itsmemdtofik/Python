@@ -11,7 +11,7 @@ from Node import SingleLinkedList as Node
 
 class LinkedListCycleII:
     @staticmethod
-    def detect_cycle(head: Node):
+    def getStartNodeOfCycleInSingleLinkedList(head: Node):
         if head is None or head.next is None:
             return None
 
@@ -25,11 +25,11 @@ class LinkedListCycleII:
 
             if slow == fast:
                 # Step 2: Cycle detected, find the start of the loop
-                entry = head
-                while entry != slow:
-                    entry = entry.next
+                currentNode = head
+                while currentNode != slow:
+                    currentNode = currentNode.next
                     slow = slow.next
-                return entry  # Start of cycle
+                return currentNode  # Start of cycle
 
         return None  # No cycle
 
@@ -50,5 +50,5 @@ if __name__ == "__main__":
     head.next.next.next.next = Node(5)
     head.next.next.next.next.next = head.next.next  # Creating cycle at node 3
 
-    start_node = LinkedListCycleII.detect_cycle(head)
+    start_node = LinkedListCycleII.getStartNodeOfCycleInSingleLinkedList(head)
     LinkedListCycleII.printCycleStart(start_node)

@@ -46,7 +46,7 @@ def deleteLastOccurrenceFromSLL(head: Node, key: int) -> Node | None | Any:
     for _ in range(lastPosition - 1):
         currentNode = currentNode.next
 
-    if currentNode.next:
+    if currentNode.next is not None:
         currentNode.next = currentNode.next.next
     return head
 
@@ -54,10 +54,10 @@ def deleteLastOccurrenceFromSLL(head: Node, key: int) -> Node | None | Any:
 if __name__ == "__main__":
     head = Node(1)
     head.next = Node(2)
-    head.next.next = Node(2)
-    head.next.next.next = Node(4)
-    head.next.next.next.next = Node(2)
+    head.next.next = Node(3)
+    head.next.next.next = Node(1)
+    head.next.next.next.next = Node(4)
 
-    key = 2
+    key = 1
     head = deleteLastOccurrenceFromSLL(head, key)
     printSLL(head)

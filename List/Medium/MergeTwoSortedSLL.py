@@ -18,7 +18,7 @@ class MergeTwoSortedList:
         dummy = Node(0)
         currentNode = dummy
 
-        while head1 and head2:
+        while head1 is not None and head2 is not None:
             if head1.data <= head2.data:
                 currentNode.next = head1
                 head1 = head1.next
@@ -27,7 +27,7 @@ class MergeTwoSortedList:
                 head2 = head2.next
             currentNode = currentNode.next
 
-        currentNode.next = head1 if head1 else head2
+        currentNode.next = head1 if head1 is not None else head2
         return dummy.next
 
 

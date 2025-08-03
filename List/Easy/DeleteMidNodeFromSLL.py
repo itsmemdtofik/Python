@@ -33,7 +33,7 @@ def deleteMidFromSLL(head: Node) -> Node | None | Any:
 
     middleIndex = count // 2
 
-    for i in range(middleIndex - 1):
+    for _ in range(middleIndex - 1):
         nextNode = nextNode.next
 
     nextNode.next = nextNode.next.next
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     head.next.next = Node(3)
     head.next.next.next = Node(4)
     head.next.next.next.next = Node(5)
-   # head.next.next.next.next.next = Node(6)
+    head.next.next.next.next.next = Node(6)
 
     print("Original Linked List:", end=" ")
     printSLL(head)

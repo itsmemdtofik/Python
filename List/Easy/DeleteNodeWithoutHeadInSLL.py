@@ -13,25 +13,26 @@ Note: No head reference is given to you. It is guaranteed that the node to be de
 from Node import SingleLinkedList as Node
 
 
+def deleteNodeWithoutHead(current: Node):
+
+    if current is None:
+        return
+
+    elif current.next is None:
+        print("This is last node, require head, can not be freed\n")
+        return
+
+    # Copy data of the next node to current node
+    current.data = current.next.data
+
+    # Perform conventional deletion
+    current.next = current.next.next
+
+
 class DeleteNodeWithoutHead:
 
     def __init__(self):
         self.head = None
-
-    def deleteNodeWithoutHead(self, current: Node):
-
-        if current is None:
-            return
-
-        elif current.next is None:
-            print("This is last node, require head, can not be freed\n")
-            return
-
-        # Copy data of the next node to current node
-        current.data = current.next.data
-
-        # Perform conventional deletion
-        current.next = current.next.next
 
     def push(self, data: int):
 
@@ -68,7 +69,7 @@ if __name__ == '__main__':
     del_node = llist.head.next
 
     # Function call
-    llist.deleteNodeWithoutHead(del_node)
+    deleteNodeWithoutHead(del_node)
 
     # Print the final Linked List
     print("Final Linked List after deletion of 15 : ")

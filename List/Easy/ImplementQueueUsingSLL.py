@@ -59,15 +59,19 @@ q = Queue()
 # Enqueue elements into the queue
 q.enqueue(10)
 q.enqueue(20)
+q.enqueue(30)
+q.enqueue(40)
+q.enqueue(50)
+q.enqueue(60)
 
 # Dequeue elements from the queue
 q.dequeue()
 q.dequeue()
 
 # Enqueue more elements into the queue
-q.enqueue(30)
-q.enqueue(40)
-q.enqueue(50)
+q.enqueue(70)
+q.enqueue(80)
+q.enqueue(90)
 
 # Dequeue an element from the queue
 q.dequeue()

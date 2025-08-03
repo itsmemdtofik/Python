@@ -78,16 +78,16 @@ def deleteAtMidOfEvenOdd(head: Node) -> Node:
 
     slow = head
     fast = head
-    prev = None
+    previousNode = None
 
     while fast and fast.next:
-        prev = slow
+        previousNode = slow
         slow = slow.next
         fast = fast.next.next
 
     # Delete the middle node (works for both odd and even lengths)
-    if prev:
-        prev.next = slow.next
+    if previousNode is not None:
+        previousNode.next = slow.next
 
     return head
 

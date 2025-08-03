@@ -23,7 +23,7 @@ from PrintList import printSLL
 def skipMDeleteN(head: Node, m: int, n: int) -> Node:
     currentNode = head
 
-    while currentNode:
+    while currentNode is not None:
         # Skip m-1 nodes
         for i in range(1, m):
             if currentNode is None:
