@@ -21,10 +21,10 @@ class Node:
 
 
 def print_dll(head):
-    current = head
-    while current:
-        print(current.data, end=" <-> " if current.next else "\n")
-        current = current.next
+    currentNode = head
+    while currentNode is not None:
+        print(currentNode.data, end=" <-> " if currentNode.next else "\n")
+        currentNode = currentNode.next
 
 
 def removeDuplicatesFromUnsortedDoublyLinkedList(head: Node):
@@ -39,7 +39,7 @@ def removeDuplicatesFromUnsortedDoublyLinkedList(head: Node):
         if currentNode.data in seen:
             # Remove current node
             previousNode.next = currentNode.next
-            if currentNode.next:
+            if currentNode.next is not None:
                 currentNode.next.prev = previousNode
             currentNode = currentNode.next
         else:
@@ -51,16 +51,16 @@ def removeDuplicatesFromUnsortedDoublyLinkedList(head: Node):
 
 
 # Helper to build doubly linked list from list
-def build_dll(values):
+def createDoublyLinkedList(values):
     if not values:
         return None
     head = Node(values[0])
-    current = head
+    currentNode = head
     for val in values[1:]:
         new_node = Node(val)
-        current.next = new_node
-        new_node.prev = current
-        current = new_node
+        currentNode.next = new_node
+        new_node.prev = currentNode
+        currentNode = new_node
     return head
 
 
@@ -73,7 +73,7 @@ test_lists = [
 
 for i, values in enumerate(test_lists, 1):
     print(f"\nOriginal List {i}:")
-    head = build_dll(values)
+    head = createDoublyLinkedList(values)
     print_dll(head)
     head = removeDuplicatesFromUnsortedDoublyLinkedList(head)
     print("List after removing duplicates:")

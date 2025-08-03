@@ -27,7 +27,7 @@ def removeDuplicatesFromSortedSingleLinkedList(head: Node):
     while currentNode is not None:
         isDuplicate = False
 
-        while currentNode.next and currentNode.data == currentNode.next.data:
+        while currentNode.next is not None and currentNode.data == currentNode.next.data:
             currentNode = currentNode.next
             isDuplicate = True
 

@@ -54,22 +54,25 @@ def removeDuplicatesFromUnsortedDoublyLinkedList(head: Node):
     return head
 
 
-def build_dll(values):
-    if not values:
-        return None
-    head = Node(values[0])
-    current = head
-    for val in values[1:]:
-        new_node = Node(val)
-        current.next = new_node
-        new_node.prev = current
-        current = new_node
+def createDoublyLinkedList(nums: list[int]):
+    dummy = Node(0)
+    currentNode = dummy
+
+    for num in nums:
+        newNode = Node(num)
+        currentNode.next = newNode
+        newNode.prev = currentNode
+        currentNode = newNode
+
+    head = dummy.next
+    if head is not None:
+        head.prev = None  # Detach dummy
     return head
 
 
 # Test the implementation
 values = [1, 2, 3, 2, 4]
-head = build_dll(values)
+head = createDoublyLinkedList(values)
 print("Original List:")
 print_dll(head)
 

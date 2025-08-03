@@ -4,16 +4,17 @@
      * Given a singly linked list. The task is to check if the given linked list is palindrome or not.
      *
      * ! Approach1: Using Stack - O(n) Time and O(n) Space
-     * ! Approach2: Using Iterative Method - O(n) Time and O(1) Space
+     * ! Approach2: Using Iterative Method (Slow-Fast) - O(n) Time and O(1) Space
      * </pre>
 """
 
 from Node import SingleLinkedList as Node
 
+
 class PalindromeLinkedList:
 
     @staticmethod
-    def stack(head: Node) -> bool:
+    def getPalindromeUsingStack(head: Node) -> bool:
         stack = []
         currentNode = head
         while currentNode is not None:
@@ -21,7 +22,7 @@ class PalindromeLinkedList:
             currentNode = currentNode.next
 
         currentNode = head
-        while currentNode:
+        while currentNode is not None:
             if currentNode.data != stack.pop():
                 return False
             currentNode = currentNode.next
@@ -29,7 +30,7 @@ class PalindromeLinkedList:
         return True
 
     @staticmethod
-    def iterative(head: Node) -> bool:
+    def getPalindromeUsingIterative(head: Node) -> bool:
 
         if head is None or head.next is None:
             return True
@@ -37,7 +38,7 @@ class PalindromeLinkedList:
         # Step 1: Find the middle
         slow = head
         fast = head
-        while fast and fast.next:
+        while fast is not None and fast.next is not None:
             slow = slow.next
             fast = fast.next.next
 
@@ -53,7 +54,7 @@ class PalindromeLinkedList:
         # Step 3: Compare both halves
         first_half = head
         second_half = previousNode
-        while second_half:
+        while second_half is not None:
             if first_half.data != second_half.data:
                 return False
             first_half = first_half.next
@@ -62,14 +63,14 @@ class PalindromeLinkedList:
         return True
 
     @staticmethod
-    def twoPointer(head: Node) -> bool:
+    def getPalindromeUsingValuesAsTwoPointer(head: Node) -> bool:
         if head is None or head.next is None:
             return True
 
         # Convert to list
         values = []
         currentNode = head
-        while currentNode:
+        while currentNode is not None:
             values.append(currentNode.data)
             currentNode = currentNode.next
 
@@ -93,7 +94,7 @@ if __name__ == "__main__":
     head.next.next.next.next = Node(1)
     head.next.next.next.next.next = Node(10)
 
-    result = PalindromeLinkedList.twoPointer(head)
+    result = PalindromeLinkedList.getPalindromeUsingStack(head)
 
     if result:
         print("List is Palindrome")
