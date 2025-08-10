@@ -18,4 +18,4 @@ var1 = pd.DataFrame(dataset)
 print(var1)
 
 #!Checking the pandas version
-print("Pandas verion is: ", pd.__version__)
+print("Pandas version is: ", pd.__version__)

@@ -1,6 +1,5 @@
-
-#! Pandas - Scatter Plot
-'''
+# ! Pandas - Scatter Plot
+"""
 Specify that you want a scatter plot with the kind argument:
 
 kind = 'scatter'
@@ -12,7 +11,7 @@ In the example below we will use "Duration" for the x-axis and "Calories" for th
 Include the x and y arguments like this:
 
 x = 'Duration', y = 'Calories'
-'''
+"""
 
 import os
 import sys
@@ -23,6 +22,6 @@ current_dir = os.path.dirname(__file__)
 file_path = os.path.join(current_dir, "Csvdata.csv")
 df = pd.read_csv(file_path)
 
-df.plot(kind = 'scatter', x = 'Duration', y = "Calories")
+df.plot(kind='scatter', x='Duration', y="Calories")
 plt.show()
 plt.savefig('scatter.png')

@@ -1,6 +1,5 @@
-
-#!Combine Color Size and Alpha
-#Three lines to make our compiler able to draw:
+# !Combine Color Size and Alpha
+# Three lines to make our compiler able to draw:
 
 
 import matplotlib.pyplot as plt

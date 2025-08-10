@@ -39,4 +39,8 @@ This is the main reason why NumPy is faster than lists. Also it is optimized to 
 
 
 """
-
+from numpy import random
+arr = np.array([1,2,3,4,5])
+random.shuffle(arr)
+print(arr)
+print(random.permutation(arr))

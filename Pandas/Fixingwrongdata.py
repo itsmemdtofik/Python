@@ -1,6 +1,5 @@
-
-#! Pandas - Fixing Wrong Data
-'''
+# ! Pandas - Fixing Wrong Data
+"""
 "Wrong data" does not have to be "empty cells" or "wrong format", it can just be wrong, like if someone registered "199" instead of "1.99".
 
 Sometimes you can spot wrong data by looking at the data set, because you have an expectation of what it should be.
@@ -8,16 +7,17 @@ Sometimes you can spot wrong data by looking at the data set, because you have a
 If you take a look at our data set, you can see that in row 7, the duration is 450, but for all the other rows the duration is between 30 and 60.
 
 It doesn't have to be wrong, but taking in consideration that this is the data set of someone's workout sessions, we conclude with the fact that this person did not work out in 450 minutes.
-'''
+"""
 
-#How can we fix wrong values, like the one for "Duration" in row 7?
-#One way to fix wrong values is to replace them with something else.
-#In our example, it is most likely a typo, and the value should be "45" instead of "450", and we could just insert "45" in row 7:
+# How can we fix wrong values, like the one for "Duration" in row 7?
+# One way to fix wrong values is to replace them with something else.
+# In our example, it is most likely a typo, and the value should be "45" instead of "450", and we could just insert "45" in row 7:
 
-#Example set "Duration" = 45 in row 7
+# Example set "Duration" = 45 in row 7
 
 import pandas as pd
 import os
+
 currentDir = os.path.dirname(__file__)
 filePath = os.path.join(currentDir, "Fixdata.csv")
 
@@ -26,7 +26,7 @@ df = pd.read_csv(filePath)
 print("Before Fixing the original data : ")
 print(df.to_string())
 print("\n")
-#! Now fixing the data
+# ! Now fixing the data
 
 df.loc[7, 'Duration'] = 45
 print("After fixing the data is: ")
@@ -57,9 +57,9 @@ This way you do not have to find out what to replace them with, and there is a g
 '''
 
 for x in df.index:
-  if df.loc[x, "Duration"] > 120:
-    df.drop(x, inplace = True)
+    if df.loc[x, "Duration"] > 120:
+        df.drop(x, inplace=True)
 
-#remember to include the 'inplace = True' argument to make the changes in the original DataFrame object instead of returning a copy
+# remember to include the 'inplace = True' argument to make the changes in the original DataFrame object instead of returning a copy
 
 print(df.to_string())
